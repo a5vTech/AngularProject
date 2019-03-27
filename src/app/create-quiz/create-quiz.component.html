@@ -1,18 +1,18 @@
 <form [formGroup]="createQuiz">
   <div>
     <mat-form-field >
-      <input matInput placeholder="Quiz Title" formControlName="title">
+      <input matInput placeholder="Quiz Title" formControlName="title" id="quiztitle">
     </mat-form-field>
   </div>
   <div>
-    <button mat-raised-button color="secondary" (click)="createNewQuestion()">New Question</button>
+    <button mat-raised-button color="secondary" (click)="createNewQuestion()" id="new-question">New Question</button>
   </div>
 
   <div formArrayName="questions">
     <div *ngFor="let questionControl of createQuiz.controls.questions.controls; let i=index">
       <div [formGroupName]="i">
           <mat-form-field >
-            <input matInput placeholder="Question" formControlName="title">
+            <input matInput placeholder="Question" formControlName="title" id="question-title">
           </mat-form-field>
           <button mat-raised-button color="secondary" (click)="createNewOption(i)">New Option</button>
           
@@ -20,7 +20,7 @@
               <div *ngFor="let optionControl of questionControl.controls.options.controls; let j=index">
                   <div [formGroupName]="j">
                     <mat-form-field>
-                      <input matInput placeholder="Option" formControlName="answer">
+                      <input matInput placeholder="Option" formControlName="answer" class="option">
                     </mat-form-field>
                     <mat-checkbox formControlName="correct">Correct answer</mat-checkbox>
                 </div>
@@ -31,39 +31,6 @@
   </div>
 
 
-  <!-- <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Personal data
-          </mat-panel-title>
-          <mat-panel-description>
-            Type your name and age
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-    
-        <mat-form-field>
-          <input matInput placeholder="First name">
-        </mat-form-field>
-    
-        <mat-form-field>
-          <input matInput placeholder="Age">
-        </mat-form-field>
-      </mat-expansion-panel>
-      <mat-expansion-panel (opened)="panelOpenState = true"
-                           (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            Self aware panel
-          </mat-panel-title>
-          <mat-panel-description>
-            Currently I am {{panelOpenState ? 'open' : 'closed'}}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
-      </mat-expansion-panel>
-    </mat-accordion> -->
 
-
-  <button mat-raised-button color="primary" (click)="saveQuiz()">Save Quiz</button>
+  <button mat-raised-button color="primary" (click)="saveQuiz()" id="save-quiz" routerLink="/portal/display-quizzes">Save Quiz</button>
 </form>

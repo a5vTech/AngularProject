@@ -4,8 +4,8 @@
   <div class="margin-bottom-15px"></div>
 
   <div *ngFor="let quiz of quizzes; let i=index">
-  <mat-card  class="margin-bottom-15px" routerLink="/portal/display-quiz/{{quiz._id}}">{{quiz.title}} ---- {{quiz._id}}</mat-card>
-    <button type="button" (click)="deleteQuiz(i)">DELETE   {{quiz._id}}</button>
+  <mat-card  class="margin-bottom-15px cards" routerLink="/portal/display-quiz/{{quiz._id}}">{{quiz.title}} ---- {{quiz._id}}</mat-card>
+    <button type="button" (click)="deleteQuiz(i)" class="delete-btn">DELETE   {{quiz._id}}</button>
 
   </div>
 </div>
