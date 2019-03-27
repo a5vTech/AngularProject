@@ -1,6 +1,6 @@
-import { TempDataService } from './../service/temp-data.service';
-import { Component, OnInit } from '@angular/core';
-import { Quiz } from '../entities/quiz';
+import {TempDataService} from './../service/temp-data.service';
+import {Component, OnInit} from '@angular/core';
+import {Quiz} from '../entities/quiz';
 
 @Component({
   selector: 'app-display-quizzes',
@@ -10,10 +10,15 @@ import { Quiz } from '../entities/quiz';
 export class DisplayQuizzesComponent implements OnInit {
   quizzes: Quiz[];
 
-  constructor(private data: TempDataService) { }
+  constructor(private data: TempDataService) {
+  }
 
   ngOnInit() {
     this.quizzes = this.data.quizzes;
   }
 
+
+  deleteQuiz(id: String) {
+    this.data.quizzes.splice(+id,1);
+  }
 }

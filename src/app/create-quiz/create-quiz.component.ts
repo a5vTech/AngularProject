@@ -1,5 +1,6 @@
+/* tslint:disable:no-string-literal */
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import {FormGroup, FormBuilder, Validators, FormArray} from '@angular/forms';
 import { TempDataService } from '../service/temp-data.service';
 import { Quiz } from '../entities/quiz';
 
@@ -14,7 +15,7 @@ export class CreateQuizComponent implements OnInit {
   constructor(private fb: FormBuilder, private data: TempDataService) { }
 
   saveQuiz() {
-    // console.log(this.createQuiz.value);
+    console.log(this.createQuiz.value);
     this.data.saveQuiz(this.createQuiz.value as Quiz);
   }
 
@@ -31,11 +32,11 @@ export class CreateQuizComponent implements OnInit {
     // console.log(options);
     questions.push(question);
   }
-  createNewOption(questionIndex: number){
+  createNewOption(questionIndex: number) {
     const option = this.createNewOptionGroup();
     const questions = this.createQuiz.controls.questions as FormArray;
     // console.log(questions);
-    const options = (<FormArray>questions.controls[questionIndex]).controls['options'] as FormArray;
+    const options = (questions.controls[questionIndex] as FormArray).controls['options'] as FormArray;
     // console.log(options);
     options.push(option);
   }
@@ -49,16 +50,18 @@ export class CreateQuizComponent implements OnInit {
 
   ngOnInit() {
     this.createQuiz = this.fb.group({
-      quiztitle: [''],
+      
+      _id: String((this.data.quizzes.length) +1),
+      title: [''],
       questions: this.fb.array([]),
       // question1: [''],  // We want a dynamic form and not this!
       // option1_1: [''],
       // option1_2: [''],
       // option1_3: [''],
       // question2: [''],
-      // option2_1: [''], 
-      // option2_2: [''], 
-      // option2_3: [''], 
-    })
+      // option2_1: [''],
+      // option2_2: [''],
+      // option2_3: [''],
+    });
   }
 }
